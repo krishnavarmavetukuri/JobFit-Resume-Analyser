@@ -4,8 +4,11 @@ JobFit Resume Analyser is a web application that uses advanced AI technology to 
 
 
 **First we have to Pip install the required library**
+
 pip install -r requirement.txt
 
 
+
 **Next in command prompt run the app.py file**
+
 python app.py
