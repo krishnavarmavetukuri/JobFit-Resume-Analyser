@@ -37,7 +37,8 @@ Working Model Screenshots
 6) Copy and Paste the Job Description from the Job Application in the Job Description Text Area provided which will look like below after pasting
 ![6](https://github.com/krishnavarmavetukuri/JobFit-Resume-Analyser/assets/114820481/342d925f-7ffa-4924-bc4f-d1aba1c44201)
 
-7) After Both the File uploading area and Job Description Text Area is having data
+7) After Both the File uploading area and Job Description Text Area is having data then we will be able to click the buttons.
+   After clicking the Review m
 ![7](https://github.com/krishnavarmavetukuri/JobFit-Resume-Analyser/assets/114820481/7a56a2da-7037-47a7-9c0d-f2ab82edfa56)
 
 
