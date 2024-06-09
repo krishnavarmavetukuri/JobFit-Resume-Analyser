@@ -4,7 +4,9 @@ JobFit Resume Analyser is a web application that uses advanced AI technology to 
 
 **First go to Command Prompt and type**
 > cd Desktop
+
 > git clone https://github.com/krishnavarmavetukuri/JobFit-Resume-Analyser.git
+
 > cd JobFit-Resume-Analyser
 
 **Next we have to Pip install the required library:**
