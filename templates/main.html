@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobFit Resume Analyser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f7ff;
+        }
+
+        .header {
+            background-color: #004d80;
+            border-bottom: 1px solid #ddd;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #004d80;
+            margin-bottom: 20px;
+        }
+
+        .upload-box {
+            border: 2px dashed #66b3ff;
+            padding: 50px;
+            border-radius: 10px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .upload-box p {
+            font-size: 18px;
+            color: #333;
+            margin: 0;
+        }
+
+        .upload-box button {
+            background-color: #004d80;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .upload-box button:hover {
+            background-color: #003366;
+        }
+
+        .upload-status {
+            font-size: 14px;
+            color: #004d80;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .error-message {
+            font-size: 14px;
+            color: #ff4d4d;
+            margin-top: 10px;
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .button-group {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-group button+button {
+            margin-left: 10px;
+        }
+
+        .button-group button {
+            background-color: #004d80;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .button-group button:hover {
+            background-color: #003366;
+        }
+
+        .job-description-box {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #004d80;
+            border-radius: 10px;
+            border: 2px solid #004d80;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .job-description-box label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            text-align: left;
+            color: #ffffff;
+        }
+
+        .job-description-box textarea {
+            width: 100%;
+            height: 100px;
+            resize: vertical;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .response-box {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            border: 1px solid #004d80;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            font-size: 16px;
+            color: #004d80;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">JobFit Resume Analyser</div>
+    </div>
+
+    <div class="container">
+        <h1>Analyze Your Resume</h1>
+        <div class="upload-box">
+            <p>Drag and drop document here to upload</p>
+            <input type="file" id="fileInput" accept=".pdf" style="display:none;"
+                onchange="validateFile(); enableButtons(); showUploadStatus();">
+            <button onclick="document.getElementById('fileInput').click()">Select from device</button>
+
+            <p style="margin-top: 20px; font-size: 14px; color: #666;">
+                Upload PDF only
+            </p>
+
+            <div id="uploadStatus" class="upload-status">File uploaded successfully.</div>
+            <div id="errorMessage" class="error-message">This file type is not supported. Please upload a PDF file.
+            </div>
+        </div>
+
+        <div class="job-description-box">
+            <label for="jobDescription">Job Description:</label>
+            <textarea id="jobDescription" placeholder="Enter job description here..."
+                oninput="enableButtons()"></textarea>
+        </div>
+
+        <div class="button-group">
+            <button onclick="handleButtonClick(1)" disabled>Review my Resume</button>
+            <button onclick="handleButtonClick(4)" disabled>Professional Skills</button>
+        </div>
+
+        <div class="button-group">
+            <button onclick="handleButtonClick(2)" disabled>Package</button>
+            <button onclick="handleButtonClick(3)" disabled>Match Score</button>
+        </div>
+
+        <div id="responseBox" class="response-box" style="display: none;"></div>
+    </div>
+
+
+</body>
+<script>
+    function enableButtons() {
+        var jobDescription = document.getElementById('jobDescription').value;
+        var fileInput = document.getElementById('fileInput').value;
+        var buttons = document.querySelectorAll('.button-group button');
+        if (jobDescription && fileInput) {
+            buttons.forEach(function (button) {
+                button.disabled = false;
+                button.style.pointerEvents = 'auto';
+            });
+        } else {
+            buttons.forEach(function (button) {
+                button.disabled = true;
+                button.style.pointerEvents = 'none';
+            });
+        }
+    }
+
+    function showUploadStatus() {
+        var uploadStatus = document.getElementById('uploadStatus');
+        uploadStatus.style.display = 'block';
+    }
+
+    function validateFile() {
+        var fileInput = document.getElementById('fileInput');
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.pdf)$/i;
+        var uploadStatus = document.getElementById('uploadStatus');
+        var errorMessage = document.getElementById('errorMessage');
+
+        if (!allowedExtensions.exec(filePath)) {
+            fileInput.value = '';
+            uploadStatus.style.display = 'none';
+            errorMessage.style.display = 'block';
+            enableButtons();
+            return false;
+        } else {
+            errorMessage.style.display = 'none';
+            enableButtons();
+            return true;
+        }
+    }
+
+    function handleButtonClick(prompt) {
+        var jobDescription = document.getElementById('jobDescription').value;
+        var fileInput = document.getElementById('fileInput').files[0];
+
+        var formData = new FormData();
+        formData.append('jobDesc', jobDescription);
+        formData.append('file', fileInput);
+        formData.append('prompt', prompt);
+
+        fetch('/response_formatting', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                var responseBox = document.getElementById('responseBox');
+                responseBox.style.display = 'block';
+
+                var formattedResponse = data.response.replace("- ", '<li>');
+                
+                formattedResponse = `<ul>${formattedResponse}</ul>`;
+
+                responseBox.innerHTML = formattedResponse;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+</script>
+
+
+</html>
