@@ -38,9 +38,14 @@ Working Model Screenshots
 ![6](https://github.com/krishnavarmavetukuri/JobFit-Resume-Analyser/assets/114820481/342d925f-7ffa-4924-bc4f-d1aba1c44201)
 
 7) After Both the File uploading area and Job Description Text Area is having data then we will be able to click the buttons.
-   After clicking the Review m
+   After clicking the **Review my Resume** button you get the following output
 ![7](https://github.com/krishnavarmavetukuri/JobFit-Resume-Analyser/assets/114820481/7a56a2da-7037-47a7-9c0d-f2ab82edfa56)
 
+8) After clicking the **Package** button you get the following output
+![8](https://github.com/krishnavarmavetukuri/JobFit-Resume-Analyser/assets/114820481/f9da584b-f35d-491d-a56d-f2d663ab79f6)
 
+9) After clicking the **Match Score** button you get the following output
+![9](https://github.com/krishnavarmavetukuri/JobFit-Resume-Analyser/assets/114820481/e2a26e69-a102-4f65-847d-31657659bae0)
 
-
+10) After clicking the **Professional Skills** button you get the following output
+![10](https://github.com/krishnavarmavetukuri/JobFit-Resume-Analyser/assets/114820481/015c3219-9b14-41fd-ac1a-ec8773f40013)
